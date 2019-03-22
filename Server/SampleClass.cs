@@ -10,7 +10,8 @@ namespace VoxelMMOServer
         //Sample Class for testing the network interface
         public void OnGamePacketPack()
         {
-            throw new System.NotImplementedException();
+            Debug.LogWarning("This works!");
+            return;
         }
 
         public void OnGamePacketParse()
