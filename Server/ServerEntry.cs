@@ -13,7 +13,9 @@ public class ServerEntry : MonoBehaviour
     void Start()
     {
         Debug.Log("I'm the server");
-        foreach(Type igp in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(igp => igp.GetInterfaces().Contains(typeof(IGamePacket)))) { //Ling for finding the interface
+        foreach(Type igp in System.Reflection.Assembly.GetExecutingAssembly().GetTypes() //Get all classes in current assembly
+            .Where(igp => igp.GetInterfaces().Contains(typeof(IGamePacket)))) //Ling for finding the interface of the assembly
+        { 
             ((IGamePacket)Activator.CreateInstance(igp)).OnGamePacketPack(); //If the class isn't static then we need an instance reference or make a new instance
         }
     }

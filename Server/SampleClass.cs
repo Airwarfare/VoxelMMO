@@ -8,6 +8,7 @@ namespace VoxelMMOServer
     public class SampleClass : IGamePacket
     {
         //Sample Class for testing the network interface
+        //This will be removed in production, only on DEBUG builds
         public void OnGamePacketPack()
         {
             Debug.LogWarning("This works!");
