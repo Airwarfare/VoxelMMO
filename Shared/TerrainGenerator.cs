@@ -55,8 +55,7 @@ public class TerrainGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.Log("Hello");
-        int mapSize = 64;
+        int mapSize = 32;
         for (int x = 0; x < 4; x++) //Chunk X
         {
             for (int y = 0; y < 4; y++) //Chunk Y
@@ -66,7 +65,16 @@ public class TerrainGenerator : MonoBehaviour
                 {
                     for (int j = 0; j < map.GetLength(1); j++)
                     {
-                        Gizmos.DrawCube(new Vector3(i + (x * mapSize), (map[i, j] * 25) + 100, j + (y * mapSize)), Vector3.one); //Render Heightmap
+                        if((Mathf.RoundToInt(map[i, j] * 25)) + 100 > 120)
+                        {
+                            Gizmos.color = Color.grey;
+                        } else if ((Mathf.RoundToInt(map[i, j] * 25)) + 100 > 110) {
+                            Gizmos.color = new Color((39 / 256f), (174 / 256f), (96 / 256f));
+                        } else if ((Mathf.RoundToInt(map[i, j] * 25)) + 100 > 100)
+                        {
+                            Gizmos.color = Color.blue;
+                        }
+                        Gizmos.DrawCube(new Vector3(i + (x * mapSize), (Mathf.RoundToInt(map[i, j] * 25)) + 100, j + (y * mapSize)), Vector3.one); //Render Heightmap
                     }
                 }
             }
